@@ -1,0 +1,19 @@
+[Unit]
+Description=Prometheus Client for Apache Sites
+ConditionPathExists=/opt/prometheus-client-apache-sites/handler.py
+Requires=prometheus-client-apache-sites.socket
+
+[Service]
+ExecStart=/opt/prometheus-client-apache-sites/handler.py --service
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+RestartPreventExitStatus=255
+Type=simple
+StandardInput=socket
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
+Alias=prometheus-client-apache-sites.service

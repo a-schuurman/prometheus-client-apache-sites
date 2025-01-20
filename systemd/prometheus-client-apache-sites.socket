@@ -1,0 +1,6 @@
+[Socket]
+ListenFIFO=%t/prometheus-client-apache-sites.stdin
+Service=prometheus-client-apache-sites.service
+
+[Install]
+WantedBy=sockets.target
